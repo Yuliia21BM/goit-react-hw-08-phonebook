@@ -13,10 +13,8 @@ import { Formik, Field, Form } from 'formik';
 import { ModalWrap } from 'components/ModalWrap/ModalWrap';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { setToken, setLoggedIn, setUser } from 'components/redux/authSlice';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
-import { useSignupUserMutation } from 'components/redux/authApi';
-import { SignUpSuccessNot, SignUErrorNot } from 'components/utiles';
+import { signupUser } from 'components/redux/auth/authOperations';
 import { useNavigate } from 'react-router-dom';
 
 const initialValues = {
@@ -30,33 +28,22 @@ export const SignupModal = ({ isOpen, onClose }) => {
   const [userEmail, setUserEmail] = useState('');
   const [userPasword, setUserPasword] = useState('');
   const [show, setShow] = useState(false);
-  const [signupUser] = useSignupUserMutation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleSubmit = (_, { resetForm }) => {
-    signupUser({
-      name: userName,
-      email: userEmail,
-      password: userPasword,
-    })
-      .then(response => {
-        console.log(response);
-        const { token, user } = response.data;
-        dispatch(setUser(user));
-        dispatch(setToken(token));
-        dispatch(setLoggedIn(true));
-        SignUpSuccessNot();
-        onClose();
-        navigate('/contacts');
+  const handleSubmit = () => {
+    dispatch(
+      signupUser({
+        name: userName,
+        email: userEmail,
+        password: userPasword,
       })
-      .catch(() => {
-        dispatch(setUser({}));
-        dispatch(setToken(''));
-        dispatch(setLoggedIn(false));
-        SignUErrorNot();
-      })
-      .finally(() => resetForm());
+    );
+    onClose();
+    setUserEmail('');
+    setUserName('');
+    setUserPasword('');
+    navigate('/contacts');
   };
 
   return (

@@ -12,13 +12,11 @@ import {
 } from '@chakra-ui/react';
 import { Formik, Field, Form } from 'formik';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
-import { useLoginUserMutation } from 'components/redux/authApi';
-import { setToken, setLoggedIn, setUser } from 'components/redux/authSlice';
-import { LoginSuccessNot, LoginErrorNot } from 'components/utiles';
-import { useNavigate } from 'react-router-dom';
+import { loginUser } from 'components/redux/auth/authOperations';
 
 import { ModalWrap } from 'components/ModalWrap/ModalWrap';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const initialValues = {
   email: '',
@@ -29,35 +27,22 @@ export const LoginModal = ({ isOpen, onClose }) => {
   const [userPasword, setUserPasword] = useState('');
   const [show, setShow] = useState(false);
   const [userEmail, setUserEmail] = useState('');
-
-  const [login, { isSuccess, isUninitialized }] = useLoginUserMutation();
-  const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleSubmiLogimForm = (_, { resetForm }) => {
-    login({
-      email: userEmail,
-      password: userPasword,
-    })
-      .then(response => {
-        console.log('good login', isSuccess, isUninitialized);
-        console.log(response);
-        const { token, user } = response.data;
-        dispatch(setUser(user));
-        dispatch(setToken(token));
-        dispatch(setLoggedIn(true));
-        LoginSuccessNot();
-        onClose();
-        navigate('/contacts');
+  const dispatch = useDispatch();
+
+  const handleSubmiLogimForm = () => {
+    console.log('Log in');
+    dispatch(
+      loginUser({
+        email: userEmail,
+        password: userPasword,
       })
-      .catch(() => {
-        console.log('bad login');
-        dispatch(setUser({}));
-        dispatch(setToken(''));
-        dispatch(setLoggedIn(false));
-        LoginErrorNot();
-      })
-      .finally(resetForm());
+    );
+    onClose();
+    setUserEmail('');
+    setUserPasword('');
+    navigate('/contacts');
   };
 
   return (

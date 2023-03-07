@@ -13,9 +13,9 @@ import {
   Heading,
 } from '@chakra-ui/react';
 
-import { useUpdateContactMutation } from 'components/redux/contactsApi';
-
+import { editContact } from 'components/redux/contacts/contactOperations';
 import { patternName } from 'components/utiles';
+import { useDispatch } from 'react-redux';
 
 const initialValues = {
   name: '',
@@ -33,10 +33,10 @@ export const EditModal = ({
 }) => {
   const [name, setName] = useState(prevName);
   const [number, setNumber] = useState(prevNumber);
-  const [updateContact] = useUpdateContactMutation();
+  const dispatch = useDispatch();
 
   const formSubmitHandler = (_, { resetForm }) => {
-    updateContact({ name, number, id });
+    dispatch(editContact({ name, number, id }));
     onClose();
     resetForm();
   };

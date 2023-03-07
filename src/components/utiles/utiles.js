@@ -10,10 +10,10 @@ export const LoginErrorNot = () =>
   toast.error('Something went wrog! Try again');
 export const SignUpSuccessNot = () => toast.success('You are registred');
 export const SignUErrorNot = () =>
-  toast.success('Something went wrog! Try again');
+  toast.error('Something went wrog! Try again');
 export const LogOutSuccessNot = () => toast.success('You are loged out!');
 export const LogOutErrorNot = () =>
-  toast.success('Something went wrog! Try again');
+  toast.error('Something went wrog! Try again');
 
 export const patternName =
   "^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$";

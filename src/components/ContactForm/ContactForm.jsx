@@ -2,6 +2,7 @@ import React from 'react';
 import { nanoid } from 'nanoid';
 import { Formik, Form, Field } from 'formik';
 import { useState } from 'react';
+import { selectContacts } from 'components/redux/contacts/contactSelectors';
 
 import {
   FormErrorMessage,
@@ -14,12 +15,10 @@ import {
   Heading,
 } from '@chakra-ui/react';
 
-import {
-  useFetchContactsQuery,
-  useAddContactMutation,
-} from 'components/redux/contactsApi';
+import { addContact } from 'components/redux/contacts/contactOperations';
 
 import { Notification, patternName } from 'components/utiles';
+import { useDispatch, useSelector } from 'react-redux';
 
 const initialValues = {
   name: '',
@@ -32,8 +31,8 @@ const numberId = nanoid();
 export const ContactForm = ({ onClose }) => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
-  const [addContact] = useAddContactMutation();
-  const { data } = useFetchContactsQuery();
+  const data = useSelector(selectContacts);
+  const dispatch = useDispatch();
 
   const formSubmitHandler = (_, { resetForm }) => {
     const invalidName = data?.find(state => state.name === name);
@@ -43,7 +42,7 @@ export const ContactForm = ({ onClose }) => {
       resetForm();
       return;
     }
-    addContact({ name, number });
+    dispatch(addContact({ name, number }));
     onClose();
     resetForm();
   };

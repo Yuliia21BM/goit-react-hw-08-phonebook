@@ -1,7 +1,7 @@
 // import { Box } from '../Box';
 import { nanoid } from 'nanoid';
 import { useDispatch } from 'react-redux';
-import { chatngeFilterValue } from '../redux/filterSlice';
+import { chatngeFilterValue } from '../redux/contacts/filterSlice';
 import { useState, useEffect } from 'react';
 import { useDebounce } from 'components/utiles';
 import { Box, Text, Input } from '@chakra-ui/react';

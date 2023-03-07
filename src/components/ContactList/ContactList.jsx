@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { selectTextFilter } from '../redux/selectors';
-import { useFetchContactsQuery } from 'components/redux/contactsApi';
+import { selectContacts } from 'components/redux/contacts/contactSelectors';
 import GiffSadDog from '../../images/sad-dog.gif';
 
 import { Box, Flex, Image, Text } from '@chakra-ui/react';
@@ -15,11 +15,11 @@ const getFilteredContacts = (contacts, filterValue) => {
   );
 };
 
-export const ContactList = ({ onEdit }) => {
-  const { data } = useFetchContactsQuery();
+export const ContactList = () => {
+  const contacts = useSelector(selectContacts);
   const filterValue = useSelector(selectTextFilter);
 
-  const visibleContacts = getFilteredContacts(data, filterValue);
+  const visibleContacts = getFilteredContacts(contacts, filterValue);
 
   return (
     <Box p="10px" pt="40px">

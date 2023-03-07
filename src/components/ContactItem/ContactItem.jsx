@@ -1,16 +1,19 @@
 import { Avatar, Button, Flex, Text, useDisclosure } from '@chakra-ui/react';
 import { RiEditLine } from 'react-icons/ri';
 import { BiPhoneCall } from 'react-icons/bi';
-import { useDeleteContactMutation } from 'components/redux/contactsApi';
 import { createPortal } from 'react-dom';
 import { ModalWrap } from 'components/ModalWrap/ModalWrap';
 import { EditModal } from 'components/EditModal/EditModal';
+import { deleteContact } from 'components/redux/contacts/contactOperations';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectIsLoading } from 'components/redux/contacts/contactSelectors';
 
 const modalRoot = document.querySelector('#modal-root');
 
 export const ContactItem = ({ id, name, number }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [deleteContact, { isLoading: loading }] = useDeleteContactMutation();
+  const loading = useSelector(selectIsLoading);
+  const dispatch = useDispatch();
   return (
     <Flex key={id} alignItems="center" justifyContent={'space-between'}>
       <Avatar name={name} colorScheme="twitter" size="md" />
@@ -29,7 +32,7 @@ export const ContactItem = ({ id, name, number }) => {
           isLoading={loading}
           colorScheme="red"
           variant="outline"
-          onClick={() => deleteContact(id)}
+          onClick={() => dispatch(deleteContact(id))}
         >
           Delete
         </Button>

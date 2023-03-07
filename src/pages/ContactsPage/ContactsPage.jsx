@@ -1,4 +1,3 @@
-import { useFetchContactsQuery } from 'components/redux/contactsApi';
 import { createPortal } from 'react-dom';
 import { useDisclosure, Button, Box, Flex } from '@chakra-ui/react';
 
@@ -9,12 +8,24 @@ import { ContactList } from 'components/ContactList/ContactList';
 import { ModalWrap } from 'components/ModalWrap/ModalWrap';
 import { TbUserPlus } from 'react-icons/tb';
 import { Spinner } from 'components/utiles/spinner';
+import {
+  selectIsLoading,
+  selectError,
+} from 'components/redux/contacts/contactSelectors';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchContacts } from 'components/redux/contacts/contactOperations';
+import { useEffect } from 'react';
 
 const modalRoot = document.querySelector('#modal-root');
 
 const ContactsPage = () => {
-  const { error, isLoading } = useFetchContactsQuery();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   return (
     <>

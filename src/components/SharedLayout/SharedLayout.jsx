@@ -4,6 +4,7 @@ import { createPortal } from 'react-dom';
 import { ImAddressBook, ImHeart } from 'react-icons/im';
 import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
+import { getIsLoggedIn, getUser } from 'components/redux/auth/authSelectors';
 import { ToastContainer } from 'react-toastify';
 import {
   useDisclosure,
@@ -18,13 +19,11 @@ import {
 
 import { Spinner } from 'components/utiles/spinner';
 
-import { setToken, setLoggedIn, setUser } from 'components/redux/authSlice';
-import { useLogoutUserMutation } from 'components/redux/authApi';
+import { logOutUser } from 'components/redux/auth/authOperations';
 import { ModeSwitcherBTN } from 'components/ModeSwitcherBTN';
 import { Container } from 'components/utiles';
 import { LoginModal } from 'components/LoginModal/LoginModal';
 import { SignupModal } from 'components/SignupModal/SignupModal';
-import { LogOutSuccessNot, LogOutErrorNot } from 'components/utiles';
 import { useNavigate } from 'react-router-dom';
 
 const StyledLink = styled(Link)`
@@ -53,25 +52,15 @@ export const SharedLayout = () => {
   const loginModal = useDisclosure();
   const signupModal = useDisclosure();
   const { colorMode } = useColorMode();
-  const name = useSelector(state => state.auth.user.name);
+  const name = useSelector(getUser);
   const dispatch = useDispatch();
-  const [logout, { isSuccess }] = useLogoutUserMutation();
   const navigate = useNavigate();
 
-  const isLoggedIn = useSelector(state => state.auth.isLoggedIn);
-  // console.log(isLoggedIn);
+  const isLoggedIn = useSelector(getIsLoggedIn);
 
   const handleLogOutClick = () => {
-    logout()
-      .then(res => {
-        console.log(isSuccess);
-        dispatch(setUser({}));
-        dispatch(setToken(''));
-        dispatch(setLoggedIn(false));
-        LogOutSuccessNot();
-        navigate('/');
-      })
-      .catch(() => LogOutErrorNot());
+    dispatch(logOutUser());
+    navigate('/');
   };
 
   return (
