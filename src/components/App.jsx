@@ -1,5 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import { lazy, useEffect } from 'react';
+import { PrivateRoute } from 'routes/PrivateRout';
+// import { RestrictedRoute } from 'routes/RestrictedRoute';
 
 import { getIsRefreshingUser } from './redux/auth/authSelectors';
 import { useDispatch, useSelector } from 'react-redux';
@@ -22,7 +24,15 @@ export const App = () => {
     <Routes>
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<HomePage />} />
-        <Route path="/contacts" element={<ContactsPage />} />
+        <Route
+          path="/contacts"
+          element={<PrivateRoute redirectTo="/" component={<ContactsPage />} />}
+        />
+        {/* <RestrictedRoute redirectTo="/contacts" component={<ContactsPage />} /> */}
+        {/* <RestrictedRoute path="/contacts">
+          <ContactsPage />
+        </RestrictedRoute> */}
+        {/* <Route path="/contacts" element={<ContactsPage />} /> */}
       </Route>
       <Route path="*" element={<DefaultPage />} />
     </Routes>

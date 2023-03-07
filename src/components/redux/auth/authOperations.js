@@ -9,7 +9,7 @@ import {
   LogOutErrorNot,
 } from 'components/utiles';
 
-axios.defaults.baseURL = 'https://goit-task-manager.herokuapp.com';
+axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
 
 const token = {
   set(token) {
