@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { selectTextFilter } from '../redux/selectors';
+import { selectTextFilter } from 'components/redux/contacts/contactSelectors';
 import { selectContacts } from 'components/redux/contacts/contactSelectors';
 import GiffSadDog from '../../images/sad-dog.gif';
 
