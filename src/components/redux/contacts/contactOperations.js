@@ -1,5 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import {
+  AddContactSuccessNot,
+  AddContactErrorNot,
+  EditContactSuccessNot,
+  EditContactErrorNot,
+  DeleteContactSuccessNot,
+  DeleteContactErrorNot,
+} from 'components/utiles';
 
 export const fetchContacts = createAsyncThunk(
   'contacts/fetchAll',
@@ -21,8 +29,10 @@ export const addContact = createAsyncThunk(
         name,
         number,
       });
+      AddContactSuccessNot();
       return response.data;
     } catch (e) {
+      AddContactErrorNot();
       return thunkAPI.rejectWithValue(e.message);
     }
   }
@@ -33,8 +43,10 @@ export const deleteContact = createAsyncThunk(
   async (contactId, thunkAPI) => {
     try {
       const response = await axios.delete(`/contacts/${contactId}`);
+      DeleteContactSuccessNot();
       return response.data;
     } catch (e) {
+      DeleteContactErrorNot();
       return thunkAPI.rejectWithValue(e.message);
     }
   }
@@ -48,8 +60,10 @@ export const editContact = createAsyncThunk(
         name: updatedContact.name,
         number: updatedContact.number,
       });
+      EditContactSuccessNot();
       return response.data;
     } catch (e) {
+      EditContactErrorNot();
       return thunkAPI.rejectWithValue(e.message);
     }
   }
