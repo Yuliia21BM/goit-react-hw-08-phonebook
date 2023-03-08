@@ -4,6 +4,7 @@ import { chatngeFilterValue } from '../redux/contacts/filterSlice';
 import { useState, useEffect } from 'react';
 import { useDebounce } from 'hooks/useDebounce';
 import { Box, Text, Input } from '@chakra-ui/react';
+import { useColorMode } from '@chakra-ui/react';
 
 const filterId = nanoid();
 
@@ -11,6 +12,7 @@ export const Filter = () => {
   const dispatch = useDispatch();
   const [filter, setFilter] = useState('');
   const debounsedfilterValue = useDebounce(filter, 500);
+  const { colorMode } = useColorMode();
 
   useEffect(() => {
     dispatch(chatngeFilterValue(debounsedfilterValue));
@@ -34,6 +36,12 @@ export const Filter = () => {
         id={filterId}
         fontSize={['sm', 'md', 'xl']}
         onChange={handleFilterChange}
+        color="rgb(17, 17, 17)"
+        borderColor={
+          colorMode === 'light'
+            ? 'rgba(0, 0, 0, 0.5)'
+            : 'rgba(255, 255, 255, 0.3)'
+        }
       />
     </Box>
   );
