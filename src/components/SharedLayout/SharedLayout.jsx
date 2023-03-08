@@ -46,6 +46,26 @@ const StyledLink = styled(Link)`
   }
 `;
 
+const StyledContainer = styled(ToastContainer)`
+  &&&.Toastify__toast-container {
+    position: fixed;
+    top: 60px;
+    right: 10px;
+    width: 200px;
+    font-size: 10px;
+    @media screen and (min-width: 768px) {
+      width: 300px;
+      font-size: 20px;
+    }
+    .icon {
+      width: 10px;
+      @media screen and (min-width: 768px) {
+        width: 20px;
+      }
+    }
+  }
+`;
+
 const modalRoot = document.querySelector('#modal-root');
 
 export const SharedLayout = () => {
@@ -73,7 +93,10 @@ export const SharedLayout = () => {
       <Box as="header" bg={colorMode === 'dark' ? '#dbfff194' : '#62c29de8'}>
         <Container>
           <Flex>
-            <Flex alignItems="center" gap="20px">
+            <Flex
+              alignItems="center"
+              gap={{ base: '5px', md: '15px', xl: '20px' }}
+            >
               <StyledLink
                 as={NavLink}
                 to="/"
@@ -82,8 +105,8 @@ export const SharedLayout = () => {
                 variant="ghost"
                 mode={colorMode}
               >
-                ContactBook
-                <ImAddressBook />
+                <Text fontSize={['sm', 'md', '2xl']}>ContactBook</Text>
+                <ImAddressBook size="20" />
               </StyledLink>
               <Spacer />
               {isLoggedIn && (
@@ -93,36 +116,48 @@ export const SharedLayout = () => {
                   variant="ghost"
                   mode={colorMode}
                 >
-                  Contacts
+                  <Text fontSize={['sm', 'md', '2xl']}>Contacts</Text>
                 </StyledLink>
               )}
             </Flex>
             <Spacer />
-            <Flex alignItems="center" gap="20px">
+            <Flex
+              alignItems="center"
+              gap={{ base: '10px', md: '15px', xl: '20px' }}
+            >
               <ModeSwitcherBTN />
               {!isLoggedIn ? (
                 <>
                   <Button
                     colorScheme="teal"
                     onClick={loginModal.onOpen}
-                    fontSize="lg"
+                    padding={['5px', '10px', '10px']}
+                    fontSize={['sm', 'md', 'xl']}
                   >
                     Log in
                   </Button>
                   <Button
                     colorScheme="yellow"
                     onClick={signupModal.onOpen}
-                    fontSize="lg"
+                    padding={['5px', '10px', '10px']}
+                    fontSize={['sm', 'md', 'lg']}
                   >
                     Sign up
                   </Button>
                 </>
               ) : (
                 <>
-                  <Text>Wellcome, dear {name} :)</Text>
+                  <Flex
+                    display={{ base: 'none', md: 'flex', xl: 'flex' }}
+                    fontSize={['sm', 'md', 'xl']}
+                    gap={'5px'}
+                  >
+                    Wellcome, dear <Text color="#ffe100"> {name}</Text> :)
+                  </Flex>
                   <Button
                     colorScheme="yellow"
-                    fontSize="lg"
+                    padding={['5px', '10px', '10px']}
+                    fontSize={['sm', 'md', 'lg']}
                     onClick={handleLogOutClick}
                   >
                     Log out
@@ -141,8 +176,8 @@ export const SharedLayout = () => {
       <Box as="footer" marginTop={'auto'}>
         <Container>
           <Flex gap="5px" alignItems={'center'} justifyContent={'center'}>
-            <ImHeart color="teal" width="10px" />
-            <Text textAlign={'center'} fontSize="sm">
+            <ImHeart color="teal" size="10px" />
+            <Text textAlign={'center'} fontSize={['5px', '9px', 'sm']}>
               If you find some problem or you have some idea how to improve this
               app, please write me a
               <Link
@@ -153,7 +188,7 @@ export const SharedLayout = () => {
                 letter
               </Link>
             </Text>
-            <ImHeart color="#ffdd02" width="10px" />
+            <ImHeart color="#ffdd02" size="10px" />
           </Flex>
         </Container>
       </Box>
@@ -168,7 +203,18 @@ export const SharedLayout = () => {
         />,
         modalRoot
       )}
-      <ToastContainer autoClose={3000} />
+      <StyledContainer
+        // position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </Box>
   );
 };

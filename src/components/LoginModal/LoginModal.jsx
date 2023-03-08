@@ -55,7 +55,7 @@ export const LoginModal = ({ isOpen, onClose }) => {
       >
         <Box p={2}>
           <Box textAlign="center">
-            <Heading>Log in</Heading>
+            <Heading fontSize={['xl', '2xl', '3xl']}>Log in</Heading>
           </Box>
           <Box my={4} textAlign="left">
             <Formik
@@ -67,9 +67,12 @@ export const LoginModal = ({ isOpen, onClose }) => {
                   <Field name="email">
                     {({ field, form }) => (
                       <FormControl mt={6} isRequired>
-                        <FormLabel>Email</FormLabel>
+                        <FormLabel fontSize={['sm', 'md', 'lg']}>
+                          Email
+                        </FormLabel>
                         <Input
                           {...field}
+                          fontSize={['sm', 'md', 'lg']}
                           value={userEmail}
                           type="email"
                           placeholder="test@test.com"
@@ -82,10 +85,13 @@ export const LoginModal = ({ isOpen, onClose }) => {
                   <Field name="password">
                     {({ field, form }) => (
                       <FormControl mt={6} isRequired>
-                        <FormLabel>Password</FormLabel>
+                        <FormLabel fontSize={['sm', 'md', 'lg']}>
+                          Password
+                        </FormLabel>
                         <InputGroup>
                           <Input
                             {...field}
+                            fontSize={['sm', 'md', 'lg']}
                             value={userPasword}
                             placeholder="*******"
                             _placeholder={{ opacity: 1, color: 'yellow.700' }}
@@ -94,6 +100,7 @@ export const LoginModal = ({ isOpen, onClose }) => {
                           />
                           <InputRightElement>
                             <Button
+                              fontSize={['sm', 'md', 'lg']}
                               bgColor="transparent"
                               border="none"
                               h="1.75rem"
@@ -112,6 +119,7 @@ export const LoginModal = ({ isOpen, onClose }) => {
                     )}
                   </Field>
                   <Button
+                    fontSize={['sm', 'md', 'lg']}
                     type="submit"
                     colorScheme="yellow"
                     variant="outline"

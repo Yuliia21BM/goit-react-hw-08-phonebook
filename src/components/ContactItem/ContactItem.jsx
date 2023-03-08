@@ -16,19 +16,28 @@ export const ContactItem = ({ id, name, number }) => {
   const dispatch = useDispatch();
   return (
     <Flex key={id} alignItems="center" justifyContent={'space-between'}>
-      <Avatar name={name} colorScheme="twitter" size="md" />
-      <Text fontSize="xl" as="cite">
+      <Avatar name={name} colorScheme="twitter" size={['sm', 'md', 'md']} />
+      <Text fontSize={['sm', 'md', 'xl']} as="cite">
         {' '}
         {name}:
       </Text>
-      <Text fontSize="xl"> {number}</Text>
-      <Flex gap={'20px'}>
-        <Button variant="outline" colorScheme="teal">
+      <Text fontSize={['sm', 'md', 'xl']}> {number}</Text>
+      <Flex gap={{ base: '5px', md: '15px', xl: '20px' }}>
+        <Button
+          variant="outline"
+          colorScheme="teal"
+          padding={['5px', '10px', '13px']}
+          size={['xs', 'md', 'xl']}
+          fontSize={['sm', 'md', 'md']}
+        >
           <a href={`tel:${number}`}>
             <BiPhoneCall />
           </a>
         </Button>
         <Button
+          padding={['5px', '10px', '13px']}
+          fontSize={['sm', 'md', 'lg']}
+          size={['xs', 'md', 'xl']}
           isLoading={loading}
           colorScheme="red"
           variant="outline"
@@ -36,7 +45,13 @@ export const ContactItem = ({ id, name, number }) => {
         >
           Delete
         </Button>
-        <Button onClick={onOpen} variant="outline" colorScheme="yellow">
+        <Button
+          onClick={onOpen}
+          variant="outline"
+          colorScheme="yellow"
+          size={['xs', 'md', 'xl']}
+          padding={['5px', '10px', '13px']}
+        >
           <RiEditLine />
         </Button>
       </Flex>

@@ -50,7 +50,7 @@ export const ContactForm = ({ onClose }) => {
     <Flex width="full" align="center" justifyContent="center">
       <Box p={2}>
         <Box textAlign="center">
-          <Heading>Add new contact</Heading>
+          <Heading fontSize={['xl', '2xl', '3xl']}>Add new contact</Heading>
         </Box>
         <Box my={4} textAlign="left">
           <Formik initialValues={initialValues} onSubmit={formSubmitHandler}>
@@ -62,12 +62,13 @@ export const ContactForm = ({ onClose }) => {
                       isRequired
                       isInvalid={form.errors.name && form.touched.name}
                     >
-                      <FormLabel>Name</FormLabel>
+                      <FormLabel fontSize={['sm', 'md', 'lg']}>Name</FormLabel>
                       <Input
                         {...field}
                         value={name}
                         type="text"
                         placeholder="John Doe"
+                        fontSize={['sm', 'md', 'lg']}
                         _placeholder={{ opacity: 1, color: 'teal.700' }}
                         pattern={patternName}
                         onChange={e => setName(e.target.value)}
@@ -83,8 +84,11 @@ export const ContactForm = ({ onClose }) => {
                       mt={4}
                       isInvalid={form.errors.name && form.touched.name}
                     >
-                      <FormLabel>Nunber</FormLabel>
+                      <FormLabel fontSize={['sm', 'md', 'lg']}>
+                        Nunber
+                      </FormLabel>
                       <Input
+                        fontSize={['sm', 'md', 'lg']}
                         {...field}
                         value={number}
                         type="telephone"
@@ -103,6 +107,7 @@ export const ContactForm = ({ onClose }) => {
                   variant="outline"
                   width="full"
                   mt={6}
+                  fontSize={['sm', 'md', 'lg']}
                 >
                   Submit
                 </Button>

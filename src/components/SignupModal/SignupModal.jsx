@@ -56,7 +56,7 @@ export const SignupModal = ({ isOpen, onClose }) => {
       >
         <Box p={2}>
           <Box textAlign="center">
-            <Heading>Sign Up</Heading>
+            <Heading fontSize={['xl', '2xl', '3xl']}>Sign Up</Heading>
           </Box>
           <Box my={4} textAlign="left">
             <Formik initialValues={initialValues} onSubmit={handleSubmit}>
@@ -65,13 +65,16 @@ export const SignupModal = ({ isOpen, onClose }) => {
                   <Field name="name">
                     {({ field, form }) => (
                       <FormControl isRequired>
-                        <FormLabel>Name</FormLabel>
+                        <FormLabel fontSize={['sm', 'md', 'lg']}>
+                          Name
+                        </FormLabel>
                         <Input
                           title="Please enter your user name."
                           {...field}
                           value={userName}
                           type="text"
                           placeholder="John Doe"
+                          fontSize={['sm', 'md', 'lg']}
                           _placeholder={{ opacity: 1, color: 'teal.700' }}
                           onChange={e => setUserName(e.target.value)}
                         />
@@ -81,10 +84,13 @@ export const SignupModal = ({ isOpen, onClose }) => {
                   <Field name="email">
                     {({ field, form }) => (
                       <FormControl mt={6} isRequired>
-                        <FormLabel>Email</FormLabel>
+                        <FormLabel fontSize={['sm', 'md', 'lg']}>
+                          Email
+                        </FormLabel>
                         <Input
                           title="Please enter your user email."
                           {...field}
+                          fontSize={['sm', 'md', 'lg']}
                           value={userEmail}
                           type="email"
                           placeholder="test@test.com"
@@ -97,7 +103,9 @@ export const SignupModal = ({ isOpen, onClose }) => {
                   <Field name="password">
                     {({ field, form }) => (
                       <FormControl mt={6} isRequired>
-                        <FormLabel>Password</FormLabel>
+                        <FormLabel fontSize={['sm', 'md', 'lg']}>
+                          Password
+                        </FormLabel>
                         <InputGroup>
                           <Input
                             title="7 characters minimum"
@@ -106,12 +114,14 @@ export const SignupModal = ({ isOpen, onClose }) => {
                             value={userPasword}
                             placeholder="*******"
                             pattern=".{7,}"
+                            fontSize={['sm', 'md', 'lg']}
                             _placeholder={{ opacity: 1, color: 'yellow.700' }}
                             onChange={e => setUserPasword(e.target.value)}
                             type={show ? 'text' : 'password'}
                           />
                           <InputRightElement>
                             <Button
+                              fontSize={['sm', 'md', 'lg']}
                               bgColor="transparent"
                               border="none"
                               h="1.75rem"
@@ -130,6 +140,7 @@ export const SignupModal = ({ isOpen, onClose }) => {
                     )}
                   </Field>
                   <Button
+                    fontSize={['sm', 'md', 'lg']}
                     type="submit"
                     colorScheme="yellow"
                     variant="outline"

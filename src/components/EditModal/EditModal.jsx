@@ -44,7 +44,7 @@ export const EditModal = ({
     <Flex width="full" align="center" justifyContent="center">
       <Box p={2}>
         <Box textAlign="center">
-          <Heading>Edit contact</Heading>
+          <Heading fontSize={['xl', '2xl', '3xl']}>Edit contact</Heading>
         </Box>
         <Box my={4} textAlign="left">
           <Formik initialValues={initialValues} onSubmit={formSubmitHandler}>
@@ -56,7 +56,7 @@ export const EditModal = ({
                       isRequired
                       isInvalid={form.errors.name && form.touched.name}
                     >
-                      <FormLabel>Name</FormLabel>
+                      <FormLabel fontSize={['sm', 'md', 'lg']}>Name</FormLabel>
                       <Input
                         {...field}
                         value={name}
@@ -64,6 +64,7 @@ export const EditModal = ({
                         placeholder="John Doe"
                         _placeholder={{ opacity: 1, color: 'teal.700' }}
                         pattern={patternName}
+                        fontSize={['sm', 'md', 'lg']}
                         onChange={e => setName(e.target.value)}
                       />
                     </FormControl>
@@ -76,11 +77,14 @@ export const EditModal = ({
                       mt={4}
                       isInvalid={form.errors.name && form.touched.name}
                     >
-                      <FormLabel>Nunber</FormLabel>
+                      <FormLabel fontSize={['sm', 'md', 'lg']}>
+                        Nunber
+                      </FormLabel>
                       <Input
                         {...field}
                         value={number}
                         type="telephone"
+                        fontSize={['sm', 'md', 'lg']}
                         placeholder="0960000000"
                         _placeholder={{ opacity: 1, color: 'teal.700' }}
                         pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -94,6 +98,7 @@ export const EditModal = ({
                   colorScheme="yellow"
                   variant="outline"
                   width="full"
+                  fontSize={['sm', 'md', 'lg']}
                   mt={6}
                 >
                   Submit

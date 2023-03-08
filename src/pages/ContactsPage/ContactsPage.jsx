@@ -35,10 +35,11 @@ const ContactsPage = () => {
             variant="outline"
             position={'absolute'}
             top="20px"
-            right={'95px'}
+            right={['0', '0', '10px']}
             colorScheme="teal"
             onClick={onOpen}
-            size="lg"
+            size={['sm', 'md', 'xl']}
+            padding={['5px', '10px', '15px']}
           >
             <TbUserPlus enableBackground={'teal'} size="1.3em" />
           </Button>

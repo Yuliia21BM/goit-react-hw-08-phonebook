@@ -22,7 +22,10 @@ export const ContactList = () => {
   const visibleContacts = getFilteredContacts(contacts, filterValue);
 
   return (
-    <Box p="10px" pt="40px">
+    <Box
+      p={{ base: '0', md: '10px', xl: '10px' }}
+      paddingTop={{ base: '30px', md: '40px', xl: '40px' }}
+    >
       <Flex gap={'20px'} flexDirection="column">
         {visibleContacts?.length === 0 ? (
           <>

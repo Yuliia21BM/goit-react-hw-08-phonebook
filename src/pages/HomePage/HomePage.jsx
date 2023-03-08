@@ -22,12 +22,22 @@ const HomePage = () => {
           >
             Hi <BsEmojiSmileUpsideDown />
           </Heading>
-          <Heading as="cite" size="xl">
+          <Heading
+            as="cite"
+            textAlign={'center'}
+            size={{ base: 'sm', md: 'md', xl: 'xl' }}
+          >
             I am your personal ContactBook
           </Heading>
         </Flex>
-        <Image src={GiffPage} alt="funny dog writes a notes" width="500px" />
-        <Text as="cite">Here you can save all your contacts</Text>
+        <Image
+          src={GiffPage}
+          alt="funny dog writes a notes"
+          width={{ base: '200px', md: '400px', xl: '500px' }}
+        />
+        <Text as="cite" fontSize={['xs', 'md', 'xl']}>
+          Here you can save all your contacts
+        </Text>
       </Flex>
     </Container>
   );

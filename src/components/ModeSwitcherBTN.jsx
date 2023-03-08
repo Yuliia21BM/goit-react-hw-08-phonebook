@@ -15,7 +15,7 @@ export const ModeSwitcherBTN = props => {
       variant="ghost"
       color="current"
       onClick={toggleColorMode}
-      icon={<SwitchIcon />}
+      icon={<SwitchIcon size="17" />}
       {...props}
     />
   );
